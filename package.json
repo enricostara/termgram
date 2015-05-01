@@ -1,0 +1,32 @@
+{
+  "name": "termgram",
+  "version": "0.0.1",
+  "description": "Termgram App",
+  "keywords": [
+    "telegram",
+    "terminal",
+    "client",
+    "telegram.link"
+  ],
+  "author": "Enrico Stara <enrico.stara@gmail.com>",
+  "homepage": "http://termgram.me",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/enricostara/termgram.git"
+  },
+  "bugs": {
+    "url": "https://github.com/enricostara/termgram/issues"
+  },
+  "dependencies": {
+    "telegram.link": "latest",
+    "colors": "latest",
+    "mute-stream": "latest",
+    "requirish": "latest",
+    "get-log": "latest"
+  },
+  "license": "MIT",
+  "main": "./termgram",
+  "engines": {
+    "node": "0.12.x"
+  }
+}
