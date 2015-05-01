@@ -14,6 +14,7 @@
     "type": "git",
     "url": "git://github.com/enricostara/termgram.git"
   },
+  "preferGlobal": true,
   "bugs": {
     "url": "https://github.com/enricostara/termgram/issues"
   },
@@ -28,5 +29,8 @@
   "main": "./termgram",
   "engines": {
     "node": "0.12.x"
+  },
+  "bin": {
+    "termgram": "./bin/run.js"
   }
 }

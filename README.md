@@ -7,6 +7,13 @@
 The main purpose of the project is to provide a working **example** of 
 how to use the [**Telegram.link**](http://telegram.link) library in order to build a Telegram client application
 
+## Install & Run
+
+```bash
+$ npm install -g termgram
+$ termgram
+```
+
 ### License
 
 The project is released under the [MIT license](./LICENSE) 
