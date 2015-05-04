@@ -28,8 +28,7 @@ module.exports = require('./mark-down')
         "choose_password_retype_error": "Hey, the _two passwords didn't match_!",
         "auth_inProgress": "Authorization on going, wait few seconds..",
         "give_phoneNumber_info": "Provide your phone number in order to receive the verification code from Telegram",
-        "give_phoneNumber": "Phone number (start with the country code 00XX..)",
-        "give_phoneNumber_error": "The phone number provided does not start with a country code!"
+        "give_phoneNumber": "Phone number, must have the international code"
     },
     "ui": {
         "askConfirmation": "y/n",
@@ -38,6 +37,7 @@ module.exports = require('./mark-down')
         "error": {
             "askWord": "Hey, you must enter only alphanumeric chars!",
             "askNumeric": "Hey, you must enter only numeric chars!",
+            "askPhone": "Hey, this is not an international phone number!",
             "askPassword": "Hey, the password didn't match the requirements!"
         }
     },
