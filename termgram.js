@@ -22,6 +22,7 @@ var logger = getLogger('main');
 
 // begin
 function main() {
+
     var users = userData.retrieveUserList();
     console.log(i18n.welcome);
     ui.spacer();
@@ -43,9 +44,6 @@ function main() {
 // end
 function shutdown() {
     ui.close();
-    if (client) {
-        client.end();
-    }
 }
 
 // clear the term
