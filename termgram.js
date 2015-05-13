@@ -22,15 +22,17 @@ var logger = getLogger('main');
 
 // begin
 function main() {
-
     var users = userData.retrieveUserList();
     console.log(i18n.welcome);
     ui.spacer();
     // if no users
     if (users.length == 0) {
         logger.info('User list is empty, sign up a new user.');
-        signUp(users, function () {
+        signUp(users).then(function () {
             console.log('nothing to do, now...');
+            shutdown();
+        }, function(error) {
+            console.log('signUp error: ', error.stack);
             shutdown();
         });
     }
