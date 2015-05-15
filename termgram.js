@@ -6,19 +6,28 @@
 // clear the term
 clearTerminal();
 
-// set the logging file name
-process.env.LOGGER_FILE = 'log/termgram';
+// setup the fs
+var fs = require('fs');
+var home = (process.env.HOME || process.env.USERPROFILE) + '/.termgram';
+fs.mkdirSync(home, '0770');
+var logFolder = home + '/log';
+fs.mkdirSync(logFolder, '0770');
 
-// import the dependencies
-require('colors');
-require('telegram.link')(getSignature());
-var ui = require('./lib/user-interface');
-var userData = require('./lib/user-data');
-var i18n = require('./i18n/en-US');
-var signUp = require('./lib/use-case/sign-up');
+// setup the logger
+process.env.LOGGER_FILE = logFolder + '/termgram';
 var getLogger = require('get-log');
 getLogger.PROJECT_NAME = 'termgram';
 var logger = getLogger('main');
+
+// import other dependencies
+require('colors');
+require('telegram.link')(getSignature());
+var ui = require('./lib/user-interface');
+var i18n = require('./i18n/en-US');
+var signUp = require('./lib/use-case/sign-up');
+var userData = require('./lib/user-data');
+userData.setBaseFolder(home);
+
 
 // begin
 function main() {
