@@ -9,9 +9,11 @@ clearTerminal();
 // setup the fs
 var fs = require('fs');
 var home = (process.env.HOME || process.env.USERPROFILE) + '/.termgram';
-fs.mkdirSync(home, '0770');
 var logFolder = home + '/log';
-fs.mkdirSync(logFolder, '0770');
+try {
+    fs.mkdirSync(home, '0770');
+    fs.mkdirSync(logFolder, '0770');
+} catch (e) {}
 
 // setup the logger
 process.env.LOGGER_FILE = logFolder + '/termgram';
