@@ -28,7 +28,8 @@ module.exports = require('./mark-down')
         "choose_password_retype_error": "Hey, the _two passwords didn't match_!",
         "auth_inProgress": "Authorization on going, wait few seconds..",
         "give_phoneNumber_info": "Provide your phone number in order to receive the verification code from Telegram",
-        "give_phoneNumber": "Phone number, must have the international code"
+        "give_phoneNumber": "Phone number, must have the international code",
+        "give_phoneNumber_invalid": "Phone number is invalid! try again:"
     },
     "ui": {
         "askConfirmation": "y/n",
