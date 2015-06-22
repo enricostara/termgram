@@ -33,7 +33,7 @@ userData.setBaseFolder(home);
 
 // begin
 function main() {
-    var users = userData.retrieveUserList();
+    var users = userData.retrieveUsernameList();
     console.log(i18n.welcome);
     ui.spacer();
     // if no users
