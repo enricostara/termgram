@@ -40,6 +40,12 @@ module.exports = require('./mark-down')
         "error_LASTNAME_INVALID": "Last name is invalid! try again.."
 
     },
+    "signIn": {
+        "info": "Termgram Login",
+        "ask_username": "Username",
+        "ask_password": "Password",
+        "ask_signUp": "The username provided is new, do you want to create a new local account?"
+    },
     "ui": {
         "askConfirmation": "y/n",
         "askConfirmation_defaultYes": "_Y_/n",
