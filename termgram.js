@@ -55,7 +55,7 @@ function main() {
         doSignUp();
     } else {
         signIn(users).then(function (res) {
-            logger.info('signIn res: %s', res);
+            logger.info('signIn res:', res);
             console.log('nothing to do, now...');
             shutdown();
         }, function(error) {
