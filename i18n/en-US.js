@@ -38,13 +38,19 @@ module.exports = require('./mark-down')
         "error_PHONE_CODE_EXPIRED": "Authorization code is expired!",
         "error_FIRSTNAME_INVALID": "First name is invalid! try again..",
         "error_LASTNAME_INVALID": "Last name is invalid! try again.."
-
     },
     "signIn": {
         "info": "Termgram Login",
+        "welcome": "Welcome back **%s**!",
         "ask_username": "Username",
         "ask_password": "Password",
         "ask_signUp": "The username provided is new, do you want to create a new local account?"
+    },
+    "selectChat": {
+        "list": "Chats:",
+        "noChatAvailable": "No chat available!",
+        "userSelfName": "You",
+        "choose_chat": "Choose a chat **number**"
     },
     "ui": {
         "askConfirmation": "y/n",
