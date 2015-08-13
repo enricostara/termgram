@@ -8,12 +8,13 @@ clearTerminal();
 
 // setup the fs
 var fs = require('fs');
-var home = (process.env.HOME || process.env.USERPROFILE) + '/.termgram';
-var logFolder = home + '/log';
+var userHome = (process.env.HOME || process.env.USERPROFILE) + '/.termgram';
+var logFolder = userHome + '/log';
 try {
-    fs.mkdirSync(home, '0770');
+    fs.mkdirSync(userHome, '0770');
     fs.mkdirSync(logFolder, '0770');
-} catch (e) {}
+} catch (e) {
+}
 
 // setup the logger
 process.env.LOGGER_FILE = logFolder + '/termgram';
@@ -28,8 +29,10 @@ var ui = require('./lib/user-interface');
 var i18n = require('./i18n/en-US');
 var signUp = require('./lib/use-case/sign-up');
 var signIn = require('./lib/use-case/sign-in');
+var selectChat = require('./lib/use-case/select-chat');
+var chat = require('./lib/use-case/chat');
 var userData = require('./lib/user-data');
-userData.setBaseFolder(home);
+userData.setBaseFolder(userHome);
 
 
 // begin
@@ -41,9 +44,8 @@ function main() {
     function doSignUp() {
         signUp(users).then(function (res) {
             logger.info('signUp res: %s', res);
-            console.log('nothing to do, now...');
-            shutdown();
-        }, function(error) {
+            home();
+        }, function (error) {
             console.log('signUp error: ', error.stack);
             shutdown();
         });
@@ -56,12 +58,10 @@ function main() {
     } else {
         signIn(users).then(function (res) {
             logger.info('signIn res:', res);
-            console.log('nothing to do, now...');
-            shutdown();
-        }, function(error) {
-            console.log('******');
-            if(error) {
-                console.log('signUp error: ', error.stack);
+            home();
+        }, function (error) {
+            if (error) {
+                console.log('signIn error: ', error.stack);
                 shutdown();
             } else {
                 doSignUp();
@@ -72,6 +72,30 @@ function main() {
         ui.askConfirmationInput(i18n.exit, true).then(shutdown, function () {
             console.log('nothing to do, again...')
         });
+    });
+}
+
+// userHome page
+function home() {
+    ui.spacer();
+    selectChat().then(function (peer) {
+        if (peer) {
+            ui.spacer();
+            chat(peer).then(function () {
+                console.log('nothing to do, now...');
+                shutdown();
+            }, function (error) {
+                console.log('chat error: ', error.stack);
+                shutdown();
+            });
+        } else {
+            console.log('No chat selected');
+            console.log('nothing to do, now...');
+            shutdown();
+        }
+    }, function (error) {
+        console.log('selectChat error: ', error.stack);
+        shutdown();
     });
 }
 
