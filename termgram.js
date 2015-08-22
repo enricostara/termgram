@@ -29,6 +29,7 @@ var ui = require('./lib/user-interface');
 var i18n = require('./i18n/en-US');
 var signUp = require('./lib/use-case/sign-up');
 var signIn = require('./lib/use-case/sign-in');
+var Updates = require('./lib/updates');
 var selectChat = require('./lib/use-case/select-chat');
 var chat = require('./lib/use-case/chat');
 var userData = require('./lib/user-data');
@@ -77,24 +78,31 @@ function main() {
 
 // userHome page
 function home() {
-    ui.spacer();
-    selectChat().then(function (peer) {
-        if (peer) {
-            ui.spacer();
-            chat(peer).then(function () {
+    var updates = Updates.getInstance();
+    updates.start().then(function() {
+        ui.spacer();
+        selectChat().then(function (peer) {
+            if (peer) {
+                ui.spacer();
+                chat(peer).then(function () {
+                    console.log('nothing to do, now...');
+                    shutdown();
+                }, function (error) {
+                    console.log('chat error: ', error.stack);
+                    shutdown();
+                });
+            } else {
+                console.log('No chat selected');
                 console.log('nothing to do, now...');
                 shutdown();
-            }, function (error) {
-                console.log('chat error: ', error.stack);
-                shutdown();
-            });
-        } else {
-            console.log('No chat selected');
-            console.log('nothing to do, now...');
+            }
+        }, function (error) {
+            console.log('selectChat error: ', error.stack);
             shutdown();
-        }
+        });
+
     }, function (error) {
-        console.log('selectChat error: ', error.stack);
+        console.log('update-emitter error: ', error.stack);
         shutdown();
     });
 }
@@ -102,6 +110,7 @@ function home() {
 // end
 function shutdown() {
     ui.close();
+    Updates.getInstance().stop();
 }
 
 // clear the term
